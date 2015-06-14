@@ -12,8 +12,17 @@ describe('Todos API', function () {
                 .expect(200, done);
         });
     });
+
     describe('POST /', function () {
         var todo = {};
+
+        // after(function (done) {
+        //     request(app)
+        //         .del('/api/todos/' + todo._id)
+        //         .expect(200)
+        //         .end(done);
+        // });
+
         it('should response 201 OK', function (done) {
             request(app)
                 .post('/api/todos', { text: 'New issue'})
@@ -25,7 +34,8 @@ describe('Todos API', function () {
                     done();
                 });
         });
-        it('sould return the same entity by id', function (done) {
+
+        it('should return the same entity by id', function (done) {
             request(app)
                 .get('/api/todos/' + todo._id)
                 .set('Accept', 'application/json')

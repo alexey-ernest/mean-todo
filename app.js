@@ -10,9 +10,10 @@ app.set('view engine', 'jade');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
-    res.send('hello app\n');
+    res.render('index', { title: 'Bootstrap' });
 });
 
 module.exports = app;

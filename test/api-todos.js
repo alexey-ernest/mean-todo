@@ -32,7 +32,7 @@ describe('Todos API', function () {
                 .expect(200)
                 .end(function (err, res) {
                     if (err) return done(err);
-                    assert.deapEquals(todo, res.body);
+                    assert.deepEqual(todo, res.body);
                     done();
                 });
         });

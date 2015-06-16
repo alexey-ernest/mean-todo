@@ -39,12 +39,31 @@ describe('Todos API', function () {
             request(app)
                 .get('/api/todos/' + todo._id)
                 .set('Accept', 'application/json')
-                .expect(200)
+                .expect(todo, done);
+        });
+    });
+
+    describe('DELETE /', function () {
+        var todo = {};
+
+        it('create item', function (done) {
+            request(app)
+                .post('/api/todos', { text: 'New issue'})
+                .set('Accept', 'application/json')
+                .expect(201)
                 .end(function (err, res) {
                     if (err) return done(err);
-                    assert.deepEqual(todo, res.body);
+                    todo = res.body;
                     done();
                 });
+        });
+
+        it('delete it, should return 200 OK', function (done) {
+            request(app)
+                .del('/api/todos/' + todo._id, function () {
+                    done();
+                })
+                .expect(200);
         });
     });
 });

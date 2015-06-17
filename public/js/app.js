@@ -1,8 +1,7 @@
-
 (function (window, angular) {
     'use strict';
 
-    var app = angular.module('todo', []);    
+    var app = angular.module('todo', []);  
 
     app.controller('mainController', ['$scope', '$http', function ($scope, $http) {
         $scope.formData = {};

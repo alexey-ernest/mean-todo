@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
@@ -9,6 +10,12 @@ var rename = require('gulp-rename');
 var Config = require('./gulpfile.config');
 
 var config = new Config();
+
+gulp.task('lint', function () {
+  return gulp.src([config.sourceApp])
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
 
 gulp.task('libs', function() {
   return gulp.src(config.moduleLibs)
@@ -42,4 +49,4 @@ gulp.task('bootstrap fonts', function () {
     .pipe(gulp.dest(config.outputFonts));
 });
 
-gulp.task('default', ['libs', 'app', 'styles', 'bootstrap fonts']);
+gulp.task('default', ['lint', 'libs', 'app', 'styles', 'bootstrap fonts']);

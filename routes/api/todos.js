@@ -26,10 +26,22 @@ router.post('/', function (req, res, next) {
     });
 });
 
+router.put('/:todo_id', function (req, res, next) {
+    Todo.findOneAndUpdate(
+        { _id: req.params.todo_id }, 
+        { text: req.body.text },
+        { new: true },
+        function (err, todo) {
+            if (err) return next(err);
+            res.json(todo);
+        }
+    );
+});
+
 router.delete('/:todo_id', function (req, res, next) {
     Todo.remove({
         _id: req.params.todo_id
-    }, function (err, todo) {
+    }, function (err) {
         if (err) return next(err);
         res.status(200);
     })

@@ -31,7 +31,7 @@ gulp.task('app', function () {
     .pipe(gulp.dest(config.outputJs))
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(gulp.dest(config.output));
+    .pipe(gulp.dest(config.outputJs));
 });
 
 gulp.task('styles', function () {

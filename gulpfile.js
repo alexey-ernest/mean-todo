@@ -17,7 +17,7 @@ gulp.task('lint', function () {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('libs', function() {
+gulp.task('libs', function () {
   return gulp.src(config.moduleLibs)
     .pipe(concat(config.allLibs))
     .pipe(uglify())

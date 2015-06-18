@@ -16,12 +16,12 @@ describe('Todos API', function () {
     describe('POST /', function () {
         var todo = {};
 
-        // after(function (done) {
-        //     request(app)
-        //         .del('/api/todos/' + todo._id)
-        //         .expect(200)
-        //         .end(done);
-        // });
+        after(function (done) {
+            request(app)
+                .del('/api/todos/' + todo._id)
+                .expect(200)
+                .end(done);
+        });
 
         it('create item', function (done) {
             createItem({ text: 'New issue' }, function (err, data) {
@@ -42,6 +42,14 @@ describe('Todos API', function () {
 
     describe('PUT /', function () {
         var todo = {};
+
+        after(function (done) {
+            request(app)
+                .del('/api/todos/' + todo._id)
+                .expect(200)
+                .end(done);
+        });
+
         it('create item', function (done) {
             createItem({ text: 'New issue' }, function (err, data) {
                 if (err) return done(err);

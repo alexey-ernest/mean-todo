@@ -11,7 +11,7 @@
             $http.post('/api/todos', $scope.formData)
                 .success(function (data) {
                     $scope.formData = {};
-                    $scope.todos = data;
+                    $scope.todos.push(data);
                 })
                 .error(function (error) {
                     console.error(error);
@@ -22,7 +22,7 @@
             $http.delete('/api/todos/' + todo._id)
                 .success(function() {
                     var idx = $scope.todos.indexOf(todo);
-                    $scope.todos.splice(index, 1);
+                    $scope.todos.splice(idx, 1);
                 })
                 .error(function (error) {
                     console.error(error);

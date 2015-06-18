@@ -12,6 +12,8 @@ router.get('/', function (req, res, next) {
 router.get('/:todo_id', function (req, res, next) {
     Todo.findById(req.params.todo_id, function (err, todo) {
         if (err) return next(err);
+        if (!todo) 
+            return res.status(404).send({ message: 'Resource not found' });
         res.json(todo);
     });
 });
@@ -39,12 +41,10 @@ router.put('/:todo_id', function (req, res, next) {
 });
 
 router.delete('/:todo_id', function (req, res, next) {
-    Todo.remove({
-        _id: req.params.todo_id
-    }, function (err) {
+    Todo.findOneAndRemove({ _id: req.params.todo_id }, function (err) {
         if (err) return next(err);
-        res.status(200);
-    })
+        res.status(200).end();
+    });
 });
 
 module.exports = router;

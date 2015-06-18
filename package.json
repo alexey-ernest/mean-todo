@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "MONGOLAB_URI=mongodb://localhost:27017/todo mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

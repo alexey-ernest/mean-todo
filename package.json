@@ -4,6 +4,7 @@
   "description": "Simple todo application using MEAN (MongoDB, Express, Angular.js, Node.js) stack.",
   "main": "app.js",
   "scripts": {
+    "prepublish": "gulp",
     "start": "node ./bin/www",
     "test": "mocha"
   },

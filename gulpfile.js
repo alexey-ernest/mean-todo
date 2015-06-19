@@ -1,21 +1,16 @@
 'use strict';
 
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
+var coffee = require('gulp-coffee');
+var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var Config = require('./gulpfile.config');
 
 var config = new Config();
-
-gulp.task('lint', function () {
-  return gulp.src([config.sourceApp])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
 
 gulp.task('libs', function () {
   return gulp.src(config.moduleLibs)
@@ -25,8 +20,14 @@ gulp.task('libs', function () {
     .pipe(gulp.dest(config.outputJs));
 });
 
-gulp.task('app', function () {
-  return gulp.src([config.sourceApp])
+gulp.task('coffee', function () {
+  return gulp.src([config.sourceAppCoffee])
+    .pipe(coffee({ bare: true }).on('error', gutil.log))
+    .pipe(gulp.dest(config.sourceApp));
+});
+
+gulp.task('app', ['coffee'], function () {
+  return gulp.src([config.sourceAppJs])
     .pipe(concat(config.allApp))
     .pipe(gulp.dest(config.outputJs))
     .pipe(uglify())
@@ -49,4 +50,4 @@ gulp.task('bootstrap fonts', function () {
     .pipe(gulp.dest(config.outputFonts));
 });
 
-gulp.task('default', ['lint', 'libs', 'app', 'styles', 'bootstrap fonts']);
+gulp.task('default', ['libs', 'coffee', 'app', 'styles', 'bootstrap fonts']);

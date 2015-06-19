@@ -3,7 +3,9 @@
 var GulpConfig = (function () {
   function GulpConfig() {
     this.source = './src/';
-    this.sourceApp = this.source + 'app/*.js';
+    this.sourceApp = this.source + 'app/';
+    this.sourceAppCoffee = this.sourceApp + '*.coffee';
+    this.sourceAppJs = this.sourceApp + '*.js';
 
     this.modules = './node_modules/';
     this.moduleLibs = [

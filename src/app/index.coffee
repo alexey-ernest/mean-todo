@@ -19,7 +19,7 @@
       return
 
     $scope.deleteTodo = (todo) ->
-      $http.delete 'api/todos' + todo._id
+      $http.delete 'api/todos/' + todo._id
         .success ->
           idx = $scope.todos.indexOf todo
           $scope.todos.splice idx, 1

@@ -1,5 +1,8 @@
 FROM google/nodejs-runtime
 MAINTAINER Alexey Melnikov <alexey.ernest@gmail.com>
 
-RUN npm install gulp
+# global install gulp
+RUN npm install -g gulp
+
+# run gulp default task
 RUN gulp

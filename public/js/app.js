@@ -16,7 +16,7 @@
         });
       };
       $scope.deleteTodo = function(todo) {
-        $http["delete"]('api/todos' + todo._id).success(function() {
+        $http["delete"]('api/todos/' + todo._id).success(function() {
           var idx;
           idx = $scope.todos.indexOf(todo);
           $scope.todos.splice(idx, 1);

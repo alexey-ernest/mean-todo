@@ -8,4 +8,4 @@ RUN npm install -g gulp
 RUN gulp
 
 # prepare env vars
-ENTRYPOINT ["/bin/sh", "-c", "env.sh"]
+ENTRYPOINT ["/bin/sh", "-c", "./app/env.sh"]

@@ -6,3 +6,6 @@ RUN npm install -g gulp
 
 # run gulp default task
 RUN gulp
+
+# prepare env vars
+ENTRYPOINT ["env.sh"]

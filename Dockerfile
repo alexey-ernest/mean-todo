@@ -1,11 +1,10 @@
 FROM google/nodejs-runtime
 MAINTAINER Alexey Melnikov <alexey.ernest@gmail.com>
 
-# global install gulp
+# gulp
 RUN npm install -g gulp
-
-# run gulp default task
 RUN gulp
 
 # prepare env vars
-ENTRYPOINT ["./env.sh"]
+RUN chmod +x /env.sh
+ENTRYPOINT ["/env.sh"]
